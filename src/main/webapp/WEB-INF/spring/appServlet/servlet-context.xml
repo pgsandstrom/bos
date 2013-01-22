@@ -25,9 +25,9 @@
 	
 	<!-- Scans the classpath of this application for @Components to deploy as beans -->
 	<context:component-scan base-package="se.persandstrom.bos" />
-	<context:component-scan base-package="se.persandstrom.bos.internal.api" />
-	<context:component-scan base-package="se.persandstrom.bos.internal.database" />
 	
+	<!-- 
 	<beans:bean id="BosApi" class="se.persandstrom.bos.internal.api.BosApi"/>
+	 -->
 		
 </beans:beans>

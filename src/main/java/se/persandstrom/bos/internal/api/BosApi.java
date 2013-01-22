@@ -10,14 +10,10 @@ import se.persandstrom.bos.internal.database.DbInterface;
 @Service
 public class BosApi {
 
+	@Autowired
 	private DbInterface database;
 
 	public BosApi() {
-	}
-
-	@Autowired
-	public void setDatabase(DbInterface database) {
-		this.database = database;
 	}
 
 	public List<Entry> getLatest() {

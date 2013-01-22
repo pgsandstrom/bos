@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import org.springframework.stereotype.Service;
+
 import se.persandstrom.bos.internal.api.Entry;
 
-//@Service
+@Service
 public class RealDb implements DbInterface {
 
 	@Override
