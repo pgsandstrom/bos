@@ -23,11 +23,15 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<!-- Scans the classpath of this application for @Components to deploy as beans -->
-	<context:component-scan base-package="se.persandstrom.bos" />
+	<!-- Scans the classpath of this application for @Components to deploy as beans
+	 -->
+	<context:component-scan base-package="se.persandstrom.bos.external" />
 	
-	<!-- 
 	<beans:bean id="BosApi" class="se.persandstrom.bos.internal.api.BosApi"/>
+	<beans:bean id="MockDb" class="se.persandstrom.bos.internal.database.MockDb"/>
+	
+	<!--
+	<beans:bean id="RealDb" class="se.persandstrom.bos.internal.database.RealDb"/>
 	 -->
 		
 </beans:beans>

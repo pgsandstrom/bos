@@ -6,7 +6,13 @@ import se.persandstrom.bos.internal.api.Entry;
 
 public interface DbInterface {
 
+	public int LATEST_SIZE = 5;
+	
 	public List<Entry> getLatest();
 
 	public Entry getRandom();
+	
+	public Entry get(String id);
+	
+	public Entry post(Entry entry);
 }

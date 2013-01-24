@@ -10,10 +10,11 @@ import se.persandstrom.bos.internal.database.DbInterface;
 @Service
 public class BosApi {
 
-	@Autowired
 	private DbInterface database;
 
-	public BosApi() {
+	@Autowired
+	public BosApi(DbInterface database) {
+		this.database = database;
 	}
 
 	public List<Entry> getLatest() {
@@ -22,5 +23,13 @@ public class BosApi {
 
 	public Entry getRandom() {
 		return database.getRandom();
+	}
+
+	public Entry get(String id) {
+		return database.get(id);
+	}
+	
+	public Entry post(Entry entry) {
+		return database.post(entry);
 	}
 }
