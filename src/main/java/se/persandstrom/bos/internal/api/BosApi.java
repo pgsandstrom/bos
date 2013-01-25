@@ -12,9 +12,17 @@ public class BosApi {
 
 	private DbInterface database;
 
+	public BosApi() {
+	}
+	
 	@Autowired
 	public BosApi(DbInterface database) {
 		this.database = database;
+	}
+	
+	public DbInterface getDb() {
+		//for test only...
+		return database;
 	}
 
 	public List<Entry> getLatest() {

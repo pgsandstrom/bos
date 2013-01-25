@@ -25,6 +25,9 @@ public class ApiController {
 
 	@Autowired
 	BosApi bosApi;
+	
+	public ApiController() {
+	}
 
 	@RequestMapping(value = "text/random", method = RequestMethod.GET)
 	public @ResponseBody

@@ -21,6 +21,7 @@
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
+		<beans:property name="exposeContextBeansAsAttributes" value="true"/>
 	</beans:bean>
 	
 	<!-- Scans the classpath of this application for @Components to deploy as beans

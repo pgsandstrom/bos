@@ -27,6 +27,10 @@ public class MockDb implements DbInterface {
 		entryMap = new HashMap<String, Entry>();
 		latest = new LinkedList<Entry>();
 		random = new Random();
+
+		for (int i = 0; i < 15; i++) {
+			post(new Entry(i, "" + i));
+		}
 	}
 
 	@Override
@@ -50,8 +54,8 @@ public class MockDb implements DbInterface {
 	public Entry get(String id) {
 		logger.info("getting " + id);
 		Entry entry = entryMap.get(id);
-		if(entry != null) {
-			logger.info("got " + entry.getContent());			
+		if (entry != null) {
+			logger.info("got " + entry.getContent());
 		} else {
 			logger.info("got null");
 		}

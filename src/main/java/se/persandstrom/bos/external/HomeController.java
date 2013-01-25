@@ -1,7 +1,6 @@
 package se.persandstrom.bos.external;
 
-import java.text.DateFormat;
-import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import org.slf4j.Logger;
@@ -26,7 +25,7 @@ public class HomeController {
 
 	@Autowired
 	ApiController apiController;
-
+	
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
@@ -34,13 +33,17 @@ public class HomeController {
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-
-		String formattedDate = dateFormat.format(date);
-
-		model.addAttribute("serverTime", formattedDate);
-		model.addAttribute("entry", new Entry(1, "hej"));
+//		Date date = new Date();
+//		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+//
+//		String formattedDate = dateFormat.format(date);
+//		model.addAttribute("serverTime", formattedDate);
+//		model.addAttribute("entry", new Entry(1, "hej"));
+//		model.addAttribute("bosApi2", bosApi);
+//		model.addAttribute("bosApi2", new BosApi(null));
+		
+		List<Entry> latest = apiController.getLatest(locale, model);
+		model.addAttribute("latestList", latest);
 
 		return "home";
 	}

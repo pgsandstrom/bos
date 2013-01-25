@@ -6,7 +6,7 @@ import se.persandstrom.bos.internal.api.Entry;
 
 public interface DbInterface {
 
-	public int LATEST_SIZE = 5;
+	public int LATEST_SIZE = 10;
 	
 	public List<Entry> getLatest();
 
