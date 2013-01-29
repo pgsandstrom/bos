@@ -1,11 +1,10 @@
 <%@ taglib
 	uri="http://java.sun.com/jsp/jstl/core"
-	prefix="c"%>
-<!doctype html>
+	prefix="c"%><!doctype html>
 <html>
 <head>
 <meta charset="utf-8">
-<title>My first web page</title>
+<title>BÖS</title>
 <link
 	rel="stylesheet"
 	type="text/css"
@@ -47,11 +46,18 @@
 			</div>
 			<div id="latest-container">
 				<p class="latest-entry">Please check out those new entries:</p>
-				<c:forEach
-					items="${latestList}"
-					var="entry">
-					<a href="text/${entry.getKey()}"><p class="latest-entry ellipsize">${entry.getContent()}</p></a>
-				</c:forEach>
+				<div id="latest-items">
+					<c:forEach
+						items="${latestList}"
+						var="entry">
+						<a href="text/${entry.getKey()}">
+							<p class="latest-entry ellipsize">
+								<c:out value="${entry.content}"></c:out>
+							</p>
+						</a>
+					</c:forEach>
+				</div>
+				<button id="update">update</button>
 			</div>
 			<div id="extra">
 				<p>
@@ -60,6 +66,7 @@
 			</div>
 		</div>
 	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 	<script
 		type="text/javascript"
 		src="resources/js/home.js"></script>

@@ -38,6 +38,11 @@ public class BosApi {
 	}
 	
 	public Entry post(Entry entry) {
+		
+		if(entry == null || entry.getContent() == null || "".equals(entry.getContent())) {
+			throw new IllegalArgumentException("Content must be a non-empty string");
+		}
+		
 		return database.post(entry);
 	}
 }
