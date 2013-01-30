@@ -17,19 +17,19 @@ public class RealDb implements DbInterface {
 	public List<Entry> getLatest() {
 		//temp:
 		ArrayList<Entry> list = new ArrayList<Entry>();
-		list.add(new Entry(0, "1970 something REAL"));
-		list.add(new Entry(System.currentTimeMillis(), "current REAL"));
+		list.add(new Entry("1970 something REAL", 0));
+		list.add(new Entry("current REAL", System.currentTimeMillis()));
 		return list;
 	}
 
 	@Override
 	public Entry getRandom() {
-		return new Entry(new Random().nextLong(), "random entry REAL");
+		return new Entry("random entry REAL", new Random().nextLong());
 	}
 
 	@Override
 	public Entry get(String id) {
-		return new Entry(new Random().nextLong(), id+ " REAL");
+		return new Entry(id + " REAL", new Random().nextLong());
 	}
 
 	@Override

@@ -23,14 +23,12 @@
 		<div id="content-container">
 			<div id="input-area-container">
 				<div id="input-area">
-					<p>
 					<h2>Welcome to Bös!</h2>
-					</p>
 					<form
 						id="entry"
 						action="text"
 						method="post">
-						<label for="majs">The best way to share text on the "internet"</label>
+						<label for="content">The best way to share text on the "internet"</label>
 						<br />
 						<textarea
 							id="content"
@@ -67,6 +65,9 @@
 		</div>
 	</div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+	<script
+		type="text/javascript"
+		src="http://documentcloud.github.com/underscore/underscore-min.js"></script>
 	<script
 		type="text/javascript"
 		src="resources/js/home.js"></script>

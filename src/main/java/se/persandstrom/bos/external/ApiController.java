@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import se.persandstrom.bos.internal.api.BosApi;
 import se.persandstrom.bos.internal.api.Entry;
+import se.persandstrom.bos.internal.exception.InvalidDataException;
 
 @Controller
 @RequestMapping(value = "/api")
@@ -25,7 +26,7 @@ public class ApiController {
 
 	@Autowired
 	BosApi bosApi;
-	
+
 	public ApiController() {
 	}
 
@@ -49,11 +50,8 @@ public class ApiController {
 
 	@RequestMapping(value = "text", method = RequestMethod.POST)
 	public @ResponseBody
-	Entry post(Locale locale, Model model, @ModelAttribute("entry") Entry entry
-	//			, HttpServletRequest request,HttpServletResponse response
-	) {
-		//				logger.info("post: {}.", entry);
-		logger.info("post content: {}.", entry.getContent());
+	Entry post(Locale locale, Model model, @ModelAttribute("entry") Entry entry) throws InvalidDataException {
+		//		logger.info("post content: {}.", entry.getContent());
 		//		logger.info("post time: {}.", entry.getCreatedTimeMs());
 
 		//				@SuppressWarnings("unchecked")

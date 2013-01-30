@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import se.persandstrom.bos.internal.database.DbInterface;
+import se.persandstrom.bos.internal.exception.InvalidDataException;
 
 @Service
 public class BosApi {
@@ -37,10 +38,10 @@ public class BosApi {
 		return database.get(id);
 	}
 	
-	public Entry post(Entry entry) {
+	public Entry post(Entry entry) throws InvalidDataException {
 		
-		if(entry == null || entry.getContent() == null || "".equals(entry.getContent())) {
-			throw new IllegalArgumentException("Content must be a non-empty string");
+		if(entry == null || entry.getContent() == null || "".equals(entry.getContent().trim())) {
+			throw new InvalidDataException("Content must be a non-empty string");
 		}
 		
 		return database.post(entry);

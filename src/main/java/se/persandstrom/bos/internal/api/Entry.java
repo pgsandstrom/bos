@@ -10,14 +10,17 @@ public class Entry {
 	private String key;
 
 	public Entry() {
-		this.createdTimeMs = 0;
-		this.content = null;
 	}
 
-	public Entry(long createdTimeMs, String content) {
-		this.createdTimeMs = createdTimeMs;
+	public Entry(String content) {
+		this();
 		this.content = content;
 		generateKey();
+	}
+
+	public Entry(String content, long createdTimeMs) {
+		this(content);
+		this.createdTimeMs = createdTimeMs;
 	}
 
 	public long getCreatedTimeMs() {

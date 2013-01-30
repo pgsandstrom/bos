@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import se.persandstrom.bos.internal.api.Entry;
+import se.persandstrom.bos.internal.exception.InvalidDataException;
 
 /**
  * Handles requests for the application home page.
@@ -59,7 +60,8 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/text", method = RequestMethod.POST)
-	String textPost(Locale locale, Model model, @ModelAttribute("entry") Entry entry) {
+	String textPost(Locale locale, Model model, @ModelAttribute("entry") Entry entry) throws InvalidDataException {
+		//TODO this can be removed?
 		logger.info("textPost");
 
 		entry = apiController.post(locale, model, entry);

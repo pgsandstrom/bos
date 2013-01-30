@@ -29,7 +29,7 @@ public class MockDb implements DbInterface {
 		random = new Random();
 
 		for (int i = 0; i < 15; i++) {
-			post(new Entry(i, "" + i));
+			post(new Entry("" + i, i));
 		}
 	}
 
