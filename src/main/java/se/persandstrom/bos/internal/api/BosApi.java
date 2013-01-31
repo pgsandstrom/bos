@@ -2,6 +2,8 @@ package se.persandstrom.bos.internal.api;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,16 +13,18 @@ import se.persandstrom.bos.internal.exception.InvalidDataException;
 @Service
 public class BosApi {
 
+	static final Logger logger = LoggerFactory.getLogger(BosApi.class);
+
 	private DbInterface database;
 
 	public BosApi() {
 	}
-	
+
 	@Autowired
 	public BosApi(DbInterface database) {
 		this.database = database;
 	}
-	
+
 	public DbInterface getDb() {
 		//for test only...
 		return database;
@@ -37,13 +41,15 @@ public class BosApi {
 	public Entry get(String id) {
 		return database.get(id);
 	}
-	
+
 	public Entry post(Entry entry) throws InvalidDataException {
-		
-		if(entry == null || entry.getContent() == null || "".equals(entry.getContent().trim())) {
+
+		if (entry == null || entry.getContent() == null || "".equals(entry.getContent().trim())) {
+			logger.warn("received non-ok post. "
+					+ (entry == null ? "entry: " + entry : "content: " + entry.getContent()));
 			throw new InvalidDataException("Content must be a non-empty string");
 		}
-		
+
 		return database.post(entry);
 	}
 }
