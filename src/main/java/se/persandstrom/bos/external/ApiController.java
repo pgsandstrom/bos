@@ -51,32 +51,7 @@ public class ApiController {
 	@RequestMapping(value = "text", method = RequestMethod.POST)
 	public @ResponseBody
 	Entry post(Locale locale, Model model, @ModelAttribute("entry") Entry entry) throws InvalidDataException {
-		//		logger.info("post content: {}.", entry.getContent());
-		//		logger.info("post time: {}.", entry.getCreatedTimeMs());
-
-		//				@SuppressWarnings("unchecked")
-		//				Enumeration<String> parameterNames = request.getParameterNames();
-		//				while (parameterNames.hasMoreElements()) {
-		//					String nextElement = parameterNames.nextElement();
-		//					String parameter = request.getParameter(nextElement);
-		//					logger.info("parameter: " + nextElement + ", " + parameter);
-		//				}
-		//		
-		//		@SuppressWarnings("unchecked")
-		//		Enumeration<String> attributeNames = request.getAttributeNames();
-		//		while (attributeNames.hasMoreElements()) {
-		//			String nextElement = attributeNames.nextElement();
-		//			Object attribute = request.getAttribute(nextElement);
-		//			logger.info("attribute: " + nextElement + ", " + attribute);
-		//		}
-
-		//		logger.info("submit: {}.", submit);
-
-		//		entry = new Entry(123,"tja");
-		//		logger.info("post key on new: {}.", entry.getKey());
-
 		bosApi.post(entry);
-
 		return entry;
 	}
 

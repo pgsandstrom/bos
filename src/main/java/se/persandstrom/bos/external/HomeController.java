@@ -22,51 +22,41 @@ import se.persandstrom.bos.internal.exception.InvalidDataException;
 @Controller
 public class HomeController {
 
-	static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+    static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
-	@Autowired
-	ApiController apiController;
-	
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
+    @Autowired
+    ApiController apiController;
 
-//		Date date = new Date();
-//		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-//
-//		String formattedDate = dateFormat.format(date);
-//		model.addAttribute("serverTime", formattedDate);
-//		model.addAttribute("entry", new Entry(1, "hej"));
-//		model.addAttribute("bosApi2", bosApi);
-//		model.addAttribute("bosApi2", new BosApi(null));
-		
-		List<Entry> latest = apiController.getLatest(locale, model);
-		model.addAttribute("latestList", latest);
+    /**
+     * Simply selects the home view to render by returning its name.
+     */
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String home(Locale locale, Model model) {
+        logger.info("Welcome home! The client locale is {}.", locale);
 
-		return "home";
-	}
+        List<Entry> latest = apiController.getLatest(locale, model);
+        model.addAttribute("latestList", latest);
 
-	@RequestMapping(value = "/text/{id}", method = RequestMethod.GET)
-	String textGet(Locale locale, Model model, @PathVariable String id) {
-		logger.info("textGet");
+        return "home";
+    }
 
-		Entry entry = apiController.get(locale, model, id);
+    @RequestMapping(value = "/text/{id}", method = RequestMethod.GET)
+    String textGet(Locale locale, Model model, @PathVariable String id) {
+        logger.info("textGet");
 
-		model.addAttribute("entry", entry);
-		return "text";
-	}
+        Entry entry = apiController.get(locale, model, id);
 
-	@RequestMapping(value = "/text", method = RequestMethod.POST)
-	String textPost(Locale locale, Model model, @ModelAttribute("entry") Entry entry) throws InvalidDataException {
-		//TODO this can be removed?
-		logger.info("textPost");
+        model.addAttribute("entry", entry);
+        return "text";
+    }
 
-		entry = apiController.post(locale, model, entry);
+    @RequestMapping(value = "/text", method = RequestMethod.POST)
+    String textPost(Locale locale, Model model, @ModelAttribute("entry") Entry entry) throws InvalidDataException {
+        logger.info("textPost");
 
-		return "redirect:/text/" + entry.getKey();
-	}
+        entry = apiController.post(locale, model, entry);
+
+        return "redirect:/text/" + entry.getKey();
+    }
 
 }
