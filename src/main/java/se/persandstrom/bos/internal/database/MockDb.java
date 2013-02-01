@@ -75,4 +75,10 @@ public class MockDb implements DbInterface {
 		return entry;
 	}
 
+    @Override
+    public void delete(Entry entry) {
+        entryMap.remove(entry.getKey());
+        latest.remove(entry);
+    }
+
 }

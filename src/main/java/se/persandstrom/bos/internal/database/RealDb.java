@@ -36,4 +36,8 @@ public class RealDb implements DbInterface {
 	public Entry post(Entry entry) {
 		return entry;
 	}
+
+    @Override
+    public void delete(Entry entry) {
+    }
 }

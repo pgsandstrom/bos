@@ -51,4 +51,14 @@ public class BosApi {
 
         return database.post(entry);
     }
+
+    public void delete(Entry entry) throws InvalidDataException {
+        if(entry == null ||entry.getKey() == null) {
+            logger.warn("received non-ok delete. "
+                    + (entry == null ? "entry: " + entry : "key: " + entry.getKey()));
+            throw new InvalidDataException("Please give a valid key");
+        }
+
+        database.delete(entry);
+    }
 }

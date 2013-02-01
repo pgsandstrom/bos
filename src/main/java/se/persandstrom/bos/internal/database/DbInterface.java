@@ -13,6 +13,8 @@ public interface DbInterface {
 	public Entry getRandom();
 	
 	public Entry get(String id);
-	
-	public Entry post(Entry entry);
+
+    public Entry post(Entry entry);
+
+    public void delete(Entry entry);
 }
