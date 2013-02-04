@@ -29,9 +29,14 @@
 	<context:component-scan base-package="se.persandstrom.bos.external" />
 	
 	<beans:bean id="BosApi" class="se.persandstrom.bos.internal.api.BosApi"/>
+
+    <!--
+    The beans to use while testing:
+    -->
 	<beans:bean id="MockDb" class="se.persandstrom.bos.internal.database.MockDb"/>
 	
 	<!--
+	The beans to use in production:
 	<beans:bean id="RealDb" class="se.persandstrom.bos.internal.database.RealDb"/>
 	 -->
 		

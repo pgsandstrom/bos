@@ -11,6 +11,8 @@ public interface DbInterface {
 	public List<Entry> getLatest();
 
 	public Entry getRandom();
+
+    public int getCount();
 	
 	public Entry get(String id);
 

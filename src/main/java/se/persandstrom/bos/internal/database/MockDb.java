@@ -16,64 +16,71 @@ import se.persandstrom.bos.internal.api.Entry;
 @Service
 public class MockDb implements DbInterface {
 
-	static final Logger logger = LoggerFactory.getLogger(MockDb.class);
+    static final Logger logger = LoggerFactory.getLogger(MockDb.class);
 
-	Map<String, Entry> entryMap;
-	LinkedList<Entry> latest;
+    Map<String, Entry> entryMap;
+    LinkedList<Entry> latest;
 
-	Random random;
+    Random random;
 
-	public MockDb() {
-		entryMap = new HashMap<String, Entry>();
-		latest = new LinkedList<Entry>();
-		random = new Random();
+    public MockDb() {
+        entryMap = new HashMap<String, Entry>();
+        latest = new LinkedList<Entry>();
+        random = new Random();
 
-		for (int i = 0; i < 15; i++) {
-			post(new Entry("" + i, i));
-		}
-	}
+        for (int i = 0; i < 15; i++) {
+            post(new Entry("" + i, i));
+        }
 
-	@Override
-	public List<Entry> getLatest() {
-		return latest;
-	}
+        logger.info("mockdb created");
+    }
 
-	@Override
-	public Entry getRandom() {
-		if (entryMap.isEmpty()) {
-			return null;
-		}
+    @Override
+    public List<Entry> getLatest() {
+        return latest;
+    }
 
-		List<String> keys = new ArrayList<String>(entryMap.keySet());
-		String randomKey = keys.get(random.nextInt(keys.size()));
-		Entry entry = entryMap.get(randomKey);
-		return entry;
-	}
+    @Override
+    public Entry getRandom() {
+        if (entryMap.isEmpty()) {
+            return null;
+        }
 
-	@Override
-	public Entry get(String id) {
-		logger.info("getting " + id);
-		Entry entry = entryMap.get(id);
-		if (entry != null) {
-			logger.info("got " + entry.getContent());
-		} else {
-			logger.info("got null");
-		}
-		return entry;
-	}
+        List<String> keys = new ArrayList<String>(entryMap.keySet());
+        String randomKey = keys.get(random.nextInt(keys.size()));
+        Entry entry = entryMap.get(randomKey);
+        return entry;
+    }
 
-	@Override
-	public Entry post(Entry entry) {
-		logger.info("saving " + entry.getKey() + ", " + entry.getContent());
-		synchronized (latest) {
-			latest.add(entry);
-			if (latest.size() > LATEST_SIZE) {
-				latest.remove();
-			}
-		}
-		entryMap.put(entry.getKey(), entry);
-		return entry;
-	}
+    @Override
+    public int getCount() {
+        return entryMap.size();
+    }
+
+    @Override
+    public Entry get(String id) {
+//		logger.info("getting " + id);
+        Entry entry = entryMap.get(id);
+        if (entry != null) {
+//			logger.info("got " + entry.getContent());
+        } else {
+//			logger.info("got null");
+        }
+        return entry;
+    }
+
+    @Override
+    public Entry post(Entry entry) {
+//		logger.info("saving " + entry.getKey() + ", " + entry.getContent());
+        synchronized (latest) {
+            latest.add(entry);
+            if (latest.size() > LATEST_SIZE) {
+                latest.remove();
+            }
+        }
+        entryMap.put(entry.getKey(), entry);
+        return entry;
+    }
 
     @Override
     public void delete(Entry entry) {

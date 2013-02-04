@@ -27,7 +27,12 @@ public class RealDb implements DbInterface {
 		return new Entry("random entry REAL", new Random().nextLong());
 	}
 
-	@Override
+    @Override
+    public int getCount() {
+        return 0;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
 	public Entry get(String id) {
 		return new Entry(id + " REAL", new Random().nextLong());
 	}

@@ -24,17 +24,16 @@ public class BosApi {
         this.database = database;
     }
 
-    public DbInterface getDb() {
-        //for test only...
-        return database;
-    }
-
     public List<Entry> getLatest() {
         return database.getLatest();
     }
 
     public Entry getRandom() {
         return database.getRandom();
+    }
+
+    public int getCount() {
+        return database.getCount();
     }
 
     public Entry get(String id) {
