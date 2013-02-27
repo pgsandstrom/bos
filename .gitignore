@@ -5,3 +5,4 @@ sonar-project.properties
 Bos.iml
 META-INF/
 lib/
+src/main/resources/redis.properties
