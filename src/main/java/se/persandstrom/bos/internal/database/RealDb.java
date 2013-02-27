@@ -5,6 +5,7 @@ import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 import se.persandstrom.bos.internal.api.Entry;
+import se.persandstrom.bos.internal.common.PropertiesFactory;
 import se.persandstrom.bos.internal.exception.DataNotFoundException;
 
 import java.io.IOException;
@@ -26,9 +27,7 @@ public class RealDb implements DbInterface {
     public RealDb() throws IOException {
 
         //XXX is this really the nicest way to do this? I feel dirty.
-        InputStream inputStream = RealDb.class.getClassLoader().getResourceAsStream("redis.properties");
-        Properties properties = new Properties();
-        properties.load(inputStream);
+        Properties properties = PropertiesFactory.getProperties("redis.properties");
         String ip = properties.getProperty("redis.ip");
         int port = Integer.valueOf(properties.getProperty("redis.port"));
         String password = properties.getProperty("redis.password");
