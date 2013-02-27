@@ -4,7 +4,9 @@ import org.apache.commons.codec.digest.DigestUtils;
 
 public class Entry {
 
+    //not saved in db currently
     private long createdTimeMs;
+
     private String content;
 
     private String key;

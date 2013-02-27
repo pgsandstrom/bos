@@ -18,10 +18,10 @@ public class MockDb implements DbInterface {
 
     static final Logger logger = LoggerFactory.getLogger(MockDb.class);
 
-    Map<String, Entry> entryMap;
-    LinkedList<Entry> latest;
+    private Map<String, Entry> entryMap;
+    private LinkedList<Entry> latest;
 
-    Random random;
+    private Random random;
 
     public MockDb() {
         entryMap = new HashMap<String, Entry>();
@@ -29,7 +29,7 @@ public class MockDb implements DbInterface {
         random = new Random();
 
         for (int i = 0; i < 15; i++) {
-            post(new Entry("" + i, i));
+            post(new Entry("item " + i, i));
         }
 
         logger.info("mockdb created");
@@ -41,18 +41,6 @@ public class MockDb implements DbInterface {
     }
 
     @Override
-    public Entry getRandom() {
-        if (entryMap.isEmpty()) {
-            return null;
-        }
-
-        List<String> keys = new ArrayList<String>(entryMap.keySet());
-        String randomKey = keys.get(random.nextInt(keys.size()));
-        Entry entry = entryMap.get(randomKey);
-        return entry;
-    }
-
-    @Override
     public int getCount() {
         return entryMap.size();
     }
@@ -61,11 +49,6 @@ public class MockDb implements DbInterface {
     public Entry get(String id) {
 //		logger.info("getting " + id);
         Entry entry = entryMap.get(id);
-        if (entry != null) {
-//			logger.info("got " + entry.getContent());
-        } else {
-//			logger.info("got null");
-        }
         return entry;
     }
 
@@ -83,9 +66,11 @@ public class MockDb implements DbInterface {
     }
 
     @Override
-    public void delete(Entry entry) {
+    public Entry delete(Entry entry) {
+        Entry removedEntry = entryMap.get(entry.getKey());
         entryMap.remove(entry.getKey());
         latest.remove(entry);
+        return removedEntry;
     }
 
 }

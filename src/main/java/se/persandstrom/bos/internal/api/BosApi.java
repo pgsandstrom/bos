@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import se.persandstrom.bos.internal.database.DbInterface;
+import se.persandstrom.bos.internal.exception.DataNotFoundException;
 import se.persandstrom.bos.internal.exception.InvalidDataException;
 
 import java.util.List;
@@ -28,10 +29,6 @@ public class BosApi {
         return database.getLatest();
     }
 
-    public Entry getRandom() {
-        return database.getRandom();
-    }
-
     public int getCount() {
         return database.getCount();
     }
@@ -41,7 +38,6 @@ public class BosApi {
     }
 
     public Entry post(Entry entry) throws InvalidDataException {
-
         if (entry == null || entry.getContent() == null || "".equals(entry.getContent().trim())) {
             logger.warn("received non-ok post. "
                     + (entry == null ? "entry: " + entry : "content: " + entry.getContent()));
@@ -51,13 +47,12 @@ public class BosApi {
         return database.post(entry);
     }
 
-    public void delete(Entry entry) throws InvalidDataException {
+    public void delete(Entry entry) throws InvalidDataException, DataNotFoundException {
         if(entry == null ||entry.getKey() == null) {
             logger.warn("received non-ok delete. "
                     + (entry == null ? "entry: " + entry : "key: " + entry.getKey()));
             throw new InvalidDataException("Please give a valid key");
         }
-
         database.delete(entry);
     }
 }

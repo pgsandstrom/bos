@@ -14,7 +14,6 @@
             var text = content.value;
             console.log("Content: " + content);
             console.log("text: " + text);
-
             $.post("api/text", {
                 content: text
             }).done(function (data) {

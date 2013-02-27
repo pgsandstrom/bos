@@ -1,7 +1,11 @@
 package se.persandstrom.bos.external;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 import java.util.Locale;
+import java.util.Properties;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import se.persandstrom.bos.internal.api.BosApi;
 import se.persandstrom.bos.internal.api.Entry;
+import se.persandstrom.bos.internal.exception.DataNotFoundException;
 import se.persandstrom.bos.internal.exception.InvalidDataException;
 
 @Controller
@@ -27,14 +32,11 @@ public class ApiController {
     @Autowired
     BosApi bosApi;
 
-    public ApiController() {
-    }
-
-    @RequestMapping(value = "text/random", method = RequestMethod.GET)
+    @RequestMapping(value = "test", method = RequestMethod.GET)
     public
     @ResponseBody
-    Entry getRandom(Locale locale, Model model) {
-        return bosApi.getRandom();
+    String test() throws IOException {
+        return "you should not be here";
     }
 
     @RequestMapping(value = "text/latest", method = RequestMethod.GET)
@@ -62,7 +64,8 @@ public class ApiController {
     @RequestMapping(value = "text/{id}", method = RequestMethod.DELETE)
     public
     @ResponseBody
-    Entry delete(Locale locale, Model model, @PathVariable String id) throws InvalidDataException {
+    Entry delete(Locale locale, Model model, @PathVariable String id) throws InvalidDataException,
+            DataNotFoundException {
         Entry entry = new Entry(null, id);
         bosApi.delete(entry);
         return entry;

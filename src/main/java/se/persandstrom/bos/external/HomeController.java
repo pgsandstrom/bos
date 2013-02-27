@@ -33,30 +33,24 @@ public class HomeController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String home(Locale locale, Model model) {
         logger.info("Welcome home! The client locale is {}.", locale);
-
         List<Entry> latest = apiController.getLatest(locale, model);
         model.addAttribute("latestList", latest);
-
         return "home";
     }
 
     @RequestMapping(value = "/text/{id}", method = RequestMethod.GET)
     String textGet(Locale locale, Model model, @PathVariable String id) {
         logger.info("textGet");
-
         Entry entry = apiController.get(locale, model, id);
-
         model.addAttribute("entry", entry);
         return "text";
     }
 
     @RequestMapping(value = "/text", method = RequestMethod.POST)
-    String textPost(Locale locale, Model model, @ModelAttribute("entry") Entry entry) throws InvalidDataException {
+    String textPost(Locale locale, Model model, @ModelAttribute("entry") Entry initEntry) throws InvalidDataException {
         logger.info("textPost");
-
-        entry = apiController.post(locale, model, entry);
-
-        return "redirect:/text/" + entry.getKey();
+        Entry resultEntry = apiController.post(locale, model, initEntry);
+        return "redirect:/text/" + resultEntry.getKey();
     }
 
 }
