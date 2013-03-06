@@ -18,7 +18,6 @@
 </head>
 <body>
 
-<%--<%@ include file="/resources/title.html" %>--%>
 <div id="title">
     <a href="/">
         <img src="/resources/img/bos.png"/>
@@ -76,17 +75,16 @@
         </div>
         <div id="extra">
             <p>
-                <a href="http://www.linkedin.com/pub/per-sandstr%C3%B6m/17/5b5/553">My LinkedIn</a>
+                <a href="//www.linkedin.com/pub/per-sandstr%C3%B6m/17/5b5/553">My LinkedIn</a>
             </p>
         </div>
     </div>
 </div>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 <script
-        type="text/javascript"
-        src="http://documentcloud.github.com/underscore/underscore-min.js"></script>
+        src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 <script
-        type="text/javascript"
+        src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
+<script
         src="resources/js/home.js"></script>
 </body>
 </html>

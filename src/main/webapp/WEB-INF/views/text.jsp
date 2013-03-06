@@ -16,7 +16,6 @@
 </head>
 <body>
 
-<%--<%@ include file="/resources/title.html" %>--%>
 <div id="title">
     <a href="/">
         <img src="/resources/img/bos.png"/>

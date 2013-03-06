@@ -8,7 +8,7 @@
 
         function validateInput(evt) {
 
-            entry.disable = true; // lol
+            entry.disable = true; // lol, funkar inte? TODO
 
             var content = document.getElementById("content");
             var text = content.value;
