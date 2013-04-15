@@ -75,6 +75,9 @@
         </div>
         <div id="extra">
             <p>
+                Version 1.02
+            </p>
+            <p>
                 <a href="//www.linkedin.com/pub/per-sandstr%C3%B6m/17/5b5/553">My LinkedIn</a>
             </p>
         </div>

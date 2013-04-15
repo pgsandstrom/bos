@@ -78,7 +78,7 @@ public class RealDb implements DbInterface {
     @Override
     public Entry get(String id) {
         Jedis jedis = getConnection();
-        String content = jedis.get(id);
+        String content = jedis.get(ITEM + id);
         returnConnection(jedis);
         return new Entry(content);
     }
@@ -89,6 +89,11 @@ public class RealDb implements DbInterface {
         if (!jedis.exists(entry.getKey())) {
             jedis.incr(COUNT);
         }
+
+        System.out.println("key: \"" + entry.getKey() + "\"");
+        System.out.println("content: \"" + entry.getContent() + "\"");
+
+
         jedis.set(ITEM + entry.getKey(), entry.getContent());
         jedis.lpush(LATEST, entry.getContent());
         jedis.ltrim(LATEST, 0, LATEST_SIZE);
